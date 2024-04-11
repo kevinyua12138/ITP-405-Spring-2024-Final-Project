@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Song::class, 'users_favourites', 'user_id', 'song_id')->withTimestamps();
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
 }

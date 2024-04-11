@@ -9,13 +9,27 @@
 </head>
 <body>
     <style>
-        .background{
-            background-color:bisque;
-
-        }
+    body, html {
+        height: 100%; 
+        margin: 0; 
+        padding: 0; 
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(to bottom, #4b006e, #000);
+        color: white; 
+    }
+    
+    .background {
+        min-height: 100%;
+    }
     </style>
-    <div class="container mt-3 background">
+
+
+    <div class="background">
+        <div class="container mt-3">
         <ul class="nav d-flex justify-content-end">
+            <li class="nav-item">
+                <a href=" {{route ('songs.index')}} " class="nav-link">Songs</a>
+            </li>
             @if(Auth::check())
                 <li class="nav-item">
                     <a href=" {{route ('profile.index')}} " class="nav-link">Profile</a>
@@ -47,6 +61,7 @@
         @endif
 
         @yield('main')
+        </div>
     </div>
 </body>
 </html>

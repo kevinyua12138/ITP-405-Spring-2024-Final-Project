@@ -1,14 +1,14 @@
 @extends('layout')
 
-@section('title', 'Register')
+@section('title', 'Songs')
 
 @section('main')
-
-    <table class="table table-striped">
-        <thead>
+    <h2 class="mb-3">Songs List</h2>
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark"> 
             <tr>
-                <th>Song Name</th>
-                <th>Artist</th>
+                <th scope="col">Song Name</th>
+                <th scope="col">Artist</th>
             </tr>
         </thead>
         <tbody>
@@ -17,7 +17,9 @@
                     <td>
                         <a href="{{ route('song.show', ['songId' => $song->songId]) }}">{{ $song->name }}</a>
                     </td>
-                    <td>{{$song->artist->name}}</td>
+                    <td>
+                        <a href="{{route('artist.show', ['artistId' => $song->artist->id])}}">{{$song->artist->name}}</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -26,3 +28,6 @@
    
 
 @endsection 
+
+@extends('layout')
+

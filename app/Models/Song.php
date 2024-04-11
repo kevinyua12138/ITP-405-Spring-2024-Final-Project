@@ -20,4 +20,9 @@ class Song extends Model
     {
         return $this->belongsToMany(User::class, 'users_favourites', 'song_id', 'user_id')->withTimestamps();
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'song_id', 'songId')->orderBy('created_at', 'desc');
+    }
 }

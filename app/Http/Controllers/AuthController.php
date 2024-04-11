@@ -9,8 +9,7 @@ class AuthController extends Controller
 {
     public function logout(){
         Auth::logout();
-        // redirect
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
     public function loginForm(){
@@ -24,9 +23,9 @@ class AuthController extends Controller
         ]);
 
         if($wasLoginSuccesful){
-            return redirect()->route('profile.index');
+            return redirect()->route('songs.index');
         }
 
-        return redirect()->route('login')->with('error', 'Invalid credentials');
+        return redirect()->route('login')->withInput()->with('error', 'Invalid credentials');
     }
 }

@@ -16,7 +16,7 @@
                 <a href=" {{route('song.show', ['songId' => $favorite->songId])}} " class="list-group-item list-group-item-action">
                     <h5 class="mb-1">{{ $favorite->name }}</h5>
                     <p class="mb-1">Artist: {{ $favorite->artist->name }}</p>
-                    <small>Added on: {{ $favorite->pivot->created_at->format('F d, Y') }}</small>
+                    <small>Added on: {{ $favorite->pivot->created_at->format('F d, Y h:i A') }}</small>
                 </a>
             @endforeach
         </div>

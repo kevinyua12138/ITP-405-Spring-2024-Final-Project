@@ -18,7 +18,7 @@ class SongController extends Controller
 
     public function show($songId)
     {
-        $song = Song::with('artist')->find($songId);
+        $song = Song::with(['artist', 'comments.user'])->find($songId);
         return view('/song/details', [
             'song' => $song,
         ]);
@@ -28,7 +28,6 @@ class SongController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            // Attach the song to the user's favorites
             if (!$user->favorites()->find($songId)) {
                 $user->favorites()->attach($songId);
                 return back()->with('success', 'Song added to favorites.');
@@ -36,7 +35,6 @@ class SongController extends Controller
                 return back()->with('error', 'This song is already in your favorites.');
             }
         } else {
-            // No user is logged in, redirect or handle as needed
             return redirect()->route('login')->with('error', 'You must be logged in to perform this action.');
         }
     }
@@ -52,7 +50,6 @@ class SongController extends Controller
                 return back()->with('error', 'Song was not in favorites.');
             }
         } else {
-            // No user is logged in, redirect or handle as needed
             return redirect()->route('login')->with('error', 'You must be logged in to perform this action.');
         }
     }
