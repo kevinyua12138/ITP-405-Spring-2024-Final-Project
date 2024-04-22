@@ -22,7 +22,10 @@
             <label class="form-label" for="password">Password</label>
             <input type="password" id="password" name="password" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Login</button>
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary w-50 mr-2">Login</button>
+            <a href="{{ route('registration.index') }}" class="btn btn-secondary w-50 ml-2">Sign Up</a>
+        </div>
     </form>
 </div>
 @endsection

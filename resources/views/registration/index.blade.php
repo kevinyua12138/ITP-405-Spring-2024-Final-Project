@@ -4,7 +4,25 @@
 
 @section('main')
 <div class="container container-custom">
+    
     <h1 class="text-center my-4">Register</h1>
+    @error('name')
+        <div class="alert alert-danger" role="alert">
+            {{ $message }}
+        </div>
+    @enderror
+
+    @error('email')
+        <div class="alert alert-danger" role="alert">
+            {{ $message }}
+        </div>
+    @enderror
+
+    @error('password')
+        <div class="alert alert-danger" role="alert">
+            {{ $message }}
+        </div>
+    @enderror
 
     <form method="post" action="{{ route('registration.create') }}">
         @csrf
@@ -20,7 +38,10 @@
             <label class="form-label" for="password">Password</label>
             <input type="password" id="password" name="password" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Register</button>
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary w-50 mr-2">Register</button>
+            <a href="{{ route('login') }}" class="btn btn-secondary w-50 ml-2">Login</a>
+        </div>
     </form>
 </div>
 @endsection

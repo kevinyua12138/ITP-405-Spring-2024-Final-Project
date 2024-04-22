@@ -14,9 +14,6 @@
             color: #fff;
         }
 
-        .btn-custom {
-            margin: 0.5rem;
-        }
         .container {
             display: flex;
             flex-direction: column;

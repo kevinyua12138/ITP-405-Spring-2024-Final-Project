@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Song Details')
+@section('title', 'User Favorites')
 
 @section('main')
 <div class="container">

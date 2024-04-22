@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Song Details')
+@section('title', 'Artists Details')
 
 @section('main')
     <h2><strong>Title:</strong> {{ $artist->name }}</h2>

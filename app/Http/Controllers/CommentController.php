@@ -29,11 +29,23 @@ class CommentController extends Controller
         $commentId = $request->input('comment_id');
         $comment = Comment::findOrFail($commentId);
 
-        // Check if the logged-in user can edit this comment
         if (Auth::id() !== $comment->user_id) {
             return back()->with('error', 'Unauthorized access.');
         }
 
         return back()->with('commentToEdit', $comment);
+    }
+
+    public function delete(Request $request, $commentId)
+    {
+        $comment = Comment::findOrFail($commentId);
+
+        if (Auth::id() !== $comment->user_id) {
+            return back()->with('error', 'Unauthorized access.');
+        }
+
+        $comment->delete();
+
+        return back()->with('success', 'Comment deleted successfully.');
     }
 }
