@@ -26,7 +26,8 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::get('/favoriteSongs', [ProfileController::class, 'user_favorites'])->name('profile.favorites');
     Route::post('/songs/{songId}/comments', [CommentController::class, 'store'])->name('comments.store');
-    Route::post('/songs/{songId}/comments/edit', [CommentController::class, 'edit'])->name('comments.edit');
+    Route::get('/comments/{commentId}', [CommentController::class, 'edit'])->name('comments.edit');
+    Route::post('/comments/{commentId}', [CommentController::class, 'update'])->name('comments.update');
     Route::post('/comments/{commentId}/delete', [CommentController::class, 'delete'])->name('comments.delete');
     Route::post('/song/{songId}/favorite', [SongController::class, 'addToFavorites'])->name('song.favorite');
     Route::post('/song/{songId}/unfavorite', [SongController::class, 'removeFromFavorites'])->name('song.unfavorite');

@@ -24,21 +24,32 @@ class CommentController extends Controller
         return back()->with('success', 'Comment added successfully.');
     }
 
-    public function edit(Request $request, $songId)
+    public function edit(Request $request, $commentId)
     {
-        $commentId = $request->input('comment_id');
-        $comment = Comment::findOrFail($commentId);
+        $comment = Comment::find($commentId);
+        
+        return view('profile/comment', ['comment' => $comment]);
+    }
 
-        if (Auth::id() !== $comment->user_id) {
-            return back()->with('error', 'Unauthorized access.');
-        }
+    public function update(Request $request, $commentId)
+    {
+        $request->validate([
+            'body' => 'required|string',
+        ]);
+    
+        $comment = Comment::find($commentId);
+    
+        $comment->body = $request->body;
+        $comment->save();
 
-        return back()->with('commentToEdit', $comment);
+        $songId = $comment->song_id;
+    
+        return redirect()->route('song.show', ['songId' => $songId])->with('success', 'Comment updated successfully.');
     }
 
     public function delete(Request $request, $commentId)
     {
-        $comment = Comment::findOrFail($commentId);
+        $comment = Comment::find($commentId);
 
         if (Auth::id() !== $comment->user_id) {
             return back()->with('error', 'Unauthorized access.');
