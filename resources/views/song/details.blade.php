@@ -69,7 +69,6 @@
     </div>
     @endif
     </form>
-    <p></p>
   
     @foreach ($song->choreographies as $choreography)
         @for ($i = 1; $i <= 5; $i++)

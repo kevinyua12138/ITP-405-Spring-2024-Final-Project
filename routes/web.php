@@ -32,7 +32,6 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/comments/{commentId}/delete', [CommentController::class, 'delete'])->name('comments.delete');
     Route::post('/song/{songId}/favorite', [SongController::class, 'addToFavorites'])->name('song.favorite');
     Route::post('/song/{songId}/unfavorite', [SongController::class, 'removeFromFavorites'])->name('song.unfavorite');
-    Route::get('/songs/{songId}/choreography', [ChoreographyController::class, 'index'])->name('choreography.index');
     Route::get('/songs/create', [SongController::class, 'create'])->name('song.create');
     Route::post('/songs/store', [SongController::class, 'store'])->name('song.store');
     Route::post('/songs/delete/{songId}', [SongController::class, 'delete'])->name('song.delete');
