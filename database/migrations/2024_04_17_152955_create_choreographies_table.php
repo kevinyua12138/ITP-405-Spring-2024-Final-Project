@@ -14,33 +14,23 @@ return new class extends Migration
         Schema::create('choreographies', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('songId');
-            $table->foreign('songId')->references('songId')->on('songs')->onDelete('cascade');
+            $table->unsignedBigInteger('song_id');
+            $table->foreign('song_id')->references('songId')->on('songs')->onDelete('cascade');
             
             $table->unsignedBigInteger('dancer1_id');
             $table->foreign('dancer1_id')->references('id')->on('users')->onDelete('cascade');
-            $table->double('dancer1_x')->nullable();
-            $table->double('dancer1_y')->nullable();
 
-            $table->unsignedBigInteger('dancer2_id');
-            $table->foreign('dancer2_id')->references('id')->on('users')->onDelete('cascade');
-            $table->double('dancer2_x')->nullable();
-            $table->double('dancer2_y')->nullable();
+            $table->unsignedBigInteger('dancer2_id')->nullable();
+            $table->foreign('dancer2_id')->references('id')->on('users')->onDelete('set null');
 
-            $table->unsignedBigInteger('dancer3_id');
-            $table->foreign('dancer3_id')->references('id')->on('users')->onDelete('cascade');
-            $table->double('dancer3_x')->nullable();
-            $table->double('dancer3_y')->nullable();
+            $table->unsignedBigInteger('dancer3_id')->nullable();
+            $table->foreign('dancer3_id')->references('id')->on('users')->onDelete('set null');
 
-            $table->unsignedBigInteger('dancer4_id');
-            $table->foreign('dancer4_id')->references('id')->on('users')->onDelete('cascade');
-            $table->double('dancer4_x')->nullable();
-            $table->double('dancer4_y')->nullable();
+            $table->unsignedBigInteger('dancer4_id')->nullable();
+            $table->foreign('dancer4_id')->references('id')->on('users')->onDelete('set null');
 
-            $table->unsignedBigInteger('dancer5_id');
-            $table->foreign('dancer5_id')->references('id')->on('users')->onDelete('cascade');
-            $table->double('dancer5_x')->nullable();
-            $table->double('dancer5_y')->nullable();
+            $table->unsignedBigInteger('dancer5_id')->nullable();
+            $table->foreign('dancer5_id')->references('id')->on('users')->onDelete('set null');
 
             $table->timestamps();
         });

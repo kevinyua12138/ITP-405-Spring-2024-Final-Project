@@ -9,6 +9,7 @@ use Auth;
 
 class CommentController extends Controller
 {
+    // No get only store post method where it checks if the comment is not null andd is a string
     public function store(Request $request, $songId)
     {
         $request->validate([
@@ -24,13 +25,14 @@ class CommentController extends Controller
         return back()->with('success', 'Comment added successfully.');
     }
 
+    // Edit Comments View
     public function edit(Request $request, $commentId)
     {
-        $comment = Comment::find($commentId);
-        
+        $comment = Comment::with(['song'])->find($commentId);
         return view('profile/comment', ['comment' => $comment]);
     }
 
+    // Storing the editing the user made
     public function update(Request $request, $commentId)
     {
         $request->validate([
@@ -47,6 +49,7 @@ class CommentController extends Controller
         return redirect()->route('song.show', ['songId' => $songId])->with('success', 'Comment updated successfully.');
     }
 
+    // delete the user's comment
     public function delete(Request $request, $commentId)
     {
         $comment = Comment::find($commentId);

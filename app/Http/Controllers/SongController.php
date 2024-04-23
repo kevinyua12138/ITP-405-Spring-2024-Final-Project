@@ -9,6 +9,8 @@ use Auth;
 
 class SongController extends Controller
 {
+
+    // songs homepage
     public function index(){
         $songs = Song::with(['artist'])->get();
 
@@ -17,20 +19,23 @@ class SongController extends Controller
         ]);
     }
 
+    // songs detail pages with preloaded artists and comments
     public function show($songId)
     {
-        $song = Song::with(['artist', 'comments.user'])->find($songId);
+        $song = Song::with(['artist', 'comments.user', 'choreographies'])->find($songId);
         return view('/song/details', [
             'song' => $song,
         ]);
     }
 
+    // create song page with preloaded artists name
     public function create()
     {
         $artists = Artist::orderBy('name')->get();
         return view('song/create',['artists' => $artists]);
     }
 
+    // store the created song, and check if artist.id exists
     public function store(Request $request)
     {
         $request->validate([
@@ -48,6 +53,8 @@ class SongController extends Controller
         return redirect()->route('songs.index')
             ->with('success', "Successfully created \"{$song->name}\" by \"{$artistName}\"");
     }
+
+    // delete songs
     public function delete($songId)
     {
         $song = Song::find($songId);
@@ -55,6 +62,7 @@ class SongController extends Controller
         return redirect()->route('songs.index')->with('success', 'Song deleted successfully.');
     }
     
+    // add to user favourites
     public function addToFavorites(Song $songId)
     {
         if (Auth::check()) {
@@ -70,6 +78,7 @@ class SongController extends Controller
         }
     }
 
+    // remove favourites from users
     public function removeFromFavorites(Song $songId)
     {
         if (Auth::check()) {
@@ -85,6 +94,7 @@ class SongController extends Controller
         }
     }
 
+    // user able to edit title of the songs
     public function editTitle($songId)
     {
         $song = Song::find($songId);
@@ -101,6 +111,7 @@ class SongController extends Controller
         return redirect()->route('song.show', ['songId' => $songId])->with('success', 'Song title updated successfully.');
     }
 
+    // user able to edit artists if exists
     public function editArtist($songId)
     {
         $song = Song::find($songId);

@@ -9,6 +9,8 @@ class Artist extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
+
     public function songs()
     {
         return $this->hasMany(Song::class, 'artistId')->orderBy('created_at', 'desc');

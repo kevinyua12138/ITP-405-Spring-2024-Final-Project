@@ -15,11 +15,11 @@
                     </div>
                 @endif
                 
-                @error('artist')
-                    <div class="alert alert-danger" role="alert">
-                        {{ $message }}
+                @if(session('errors'))
+                    <div class="alert alert-danger">
+                    {{ session('errors')->first() }}
                     </div>
-                @enderror
+                @endif
 
                 <form action="{{ route('song.store') }}" method="POST">
                     @csrf

@@ -13,6 +13,7 @@ class RegistrationController extends Controller
         return view('registration/index');
     }
 
+    //validaing if register email is unqie and pasword > 6
     public function register(Request $request){
         $request->validate([
             'name' => 'required',

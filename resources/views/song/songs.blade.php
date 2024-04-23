@@ -27,8 +27,11 @@
                     <div class="card h-100">
                         <div class="card-body position-relative">
                             <h5 class="card-title">{{ $song->name }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ $song->artist->name }}</h6>
-                            
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                <a href="{{ route('artist.show', ['artistId' => $song->artist->id]) }}">
+                                    {{ $song->artist->name }}
+                                </a>
+                            </h6>       
                             @if(Auth::check() && Auth::user()->email === 'admin@gmail.com')
                                 <form action="{{ route('song.delete', ['songId' => $song->songId]) }}" method="POST" class="position-absolute top-0 end-0 mt-2 me-2" onsubmit="return confirm('Are you sure you want to delete this song?');">
                                     @csrf

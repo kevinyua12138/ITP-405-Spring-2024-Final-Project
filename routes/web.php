@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\ChoreoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,7 +21,7 @@ Route::post('/register', [RegistrationController::class, 'register'])->name('reg
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
-Route::get('/song/{songId}', [SongController::class, 'show'])->name('song.show');
+Route::get('/artist/{artistId}', [ArtistController::class, 'show'])->name('artist.show');
 Route::middleware(['auth'])->group(function(){
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
@@ -42,7 +43,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/songs/{songId}/update-title', [SongController::class, 'updateTitle'])->name('songs.update.title');
     Route::get('/songs/{songId}/edit-artist', [SongController::class, 'editArtist'])->name('songs.edit.artist');
     Route::post('/songs/{songId}/update-artist', [SongController::class, 'updateArtist'])->name('songs.update.artist');
-
+    Route::get('/song/{songId}', [SongController::class, 'show'])->name('song.show');
+    Route::get('/songs/{songId}/choreography', [ChoreoController::class, 'add'])->name('choreography.add');
+    Route::post('/songs/{songId}/choreography', [ChoreoController::class, 'store'])->name('choreography.store');
 });
 
 

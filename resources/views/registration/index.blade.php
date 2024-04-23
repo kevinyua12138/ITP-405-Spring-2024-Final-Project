@@ -6,23 +6,12 @@
 <div class="container container-custom">
     
     <h1 class="text-center my-4">Register</h1>
-    @error('name')
-        <div class="alert alert-danger" role="alert">
-            {{ $message }}
+    
+    @if(session('errors'))
+        <div class="alert alert-danger">
+        {{ session('errors')->first() }}
         </div>
-    @enderror
-
-    @error('email')
-        <div class="alert alert-danger" role="alert">
-            {{ $message }}
-        </div>
-    @enderror
-
-    @error('password')
-        <div class="alert alert-danger" role="alert">
-            {{ $message }}
-        </div>
-    @enderror
+    @endif
 
     <form method="post" action="{{ route('registration.create') }}">
         @csrf

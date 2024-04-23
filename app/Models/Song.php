@@ -16,13 +16,13 @@ class Song extends Model
         return $this->belongsTo(Artist::class, 'artistId');
     }
 
-    public function favoredByUsers()
-    {
-        return $this->belongsToMany(User::class, 'users_favourites', 'song_id', 'user_id')->withTimestamps();
-    }
-
     public function comments()
     {
         return $this->hasMany(Comment::class, 'song_id', 'songId')->orderBy('created_at', 'desc');
+    }
+
+    public function choreographies()
+    {
+        return $this->hasMany(Choreography::class, 'song_id');
     }
 }

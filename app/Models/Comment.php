@@ -22,6 +22,6 @@ class Comment extends Model
     
     public function song()
     {
-        return $this->belongsTo(Song::class, 'songId');
+        return $this->belongsTo(Song::class, 'song_id');
     }
 }

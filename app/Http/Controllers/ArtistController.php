@@ -7,6 +7,7 @@ use App\Models\Artist;
 
 class ArtistController extends Controller
 {
+    //shows artists songs
     public function show($artistId)
     {
         $artist = Artist::with(['songs']) ->find($artistId);
@@ -15,11 +16,13 @@ class ArtistController extends Controller
         ]);
     }
 
+    //go to the create artists page
     public function create()
     {
         return view('artist/create');
     }
 
+    //storing new artists if name is unique
     public function store(Request $request)
     {
         $request->validate([

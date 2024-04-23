@@ -13,7 +13,8 @@
         
         <h1>{{ $user->name }}</h1>
         <p class="mb-4">Email: {{ $user->email }}</p>
-        @if(auth()->check() && auth()->user()->email === 'admin@gmail.com')
+        
+        @if(Auth::check() && Auth::user()->email === 'admin@gmail.com')
         <h3 class="mt-4">User List</h3>
             <ul class="list-group">
                 @foreach($users as $user)

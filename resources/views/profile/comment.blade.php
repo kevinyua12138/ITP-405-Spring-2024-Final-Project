@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="text-white p-4 rounded">
-                <h2 class="text-center mb-4">Edit Comment</h2>
+                <h2 class="text-center mb-4">Edit Comment for "{{ $comment->song->name }}"</h2>
 
                 @error('body')
                     <div class="alert alert-danger" role="alert">

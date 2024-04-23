@@ -8,6 +8,7 @@ use Auth;
 
 class ProfileController extends Controller
 {
+    //if admin, e is allowed to look at all current accounts and delete accounts when viewing profile
     public function index(){
         $users = User::where('email', '!=', 'admin@gmail.com')->get();
         return view('profile/index', [
@@ -16,6 +17,7 @@ class ProfileController extends Controller
         ]);
     }
 
+    // display favourites tab
     public function user_favorites()
     {
         $user = Auth::user();
@@ -23,10 +25,11 @@ class ProfileController extends Controller
         return view('profile/favorites', ['favorites' => $favorites]);
     }
 
+    // delete users
     public function delete($userId) 
     {
         if (Auth::check() && Auth::user()->email === 'admin@gmail.com') {
-            $user = User::findOrFail($userId);
+            $user = User::find($userId);
             $user->delete();
             return redirect()->route('profile.index')->with('success', 'User deleted successfully.');
         } else {
